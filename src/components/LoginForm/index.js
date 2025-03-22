@@ -1,11 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 import './index.css'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken) {
+      navigate('/', { replace: true }) // Navigate to home if token exists
+    }
+  }, [navigate])
 
   const onChangeUsername = event => {
     setUsername(event.target.value)
@@ -30,15 +39,16 @@ const LoginForm = () => {
 
     const response = await fetch(url, options)
     const data = await response.json()
-    // if (response.ok) {
-    //   console.log("success")
-    // }
-    // {response.ok ? useNavigate('./') : console.log("No")}
+    //ternary operator
+    // response.ok ? navigate('/', { replace: true }); : setErrorMsg(data.error_msg)
     if (response.ok) {
       // If the response is successful, navigate to the specified route
       navigate('/', { replace: true } );
+      Cookies.set('jwt_token', data.jwt_token, {
+        expires: 30
+      })
     } else {
-      console.log("No");
+      setErrorMsg(data.error_msg);
     }
   }
 
@@ -75,7 +85,6 @@ const LoginForm = () => {
       </>
     )
   }
-
   return (
     <div className="login-form-container">
       <img
@@ -99,6 +108,7 @@ const LoginForm = () => {
         <button type="submit" className="login-button">
           Login
         </button>
+        <p className='error-message'>{errorMsg}</p>
       </form>
     </div>
   )
