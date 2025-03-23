@@ -11,7 +11,7 @@ const Home = () => {
     if(jwtToken === undefined) {
       navigate('/login', {replace: true})
     }
-  })
+  }, [navigate])
   return (
   <>
     <Header />

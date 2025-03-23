@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Products from './components/Products'
 import Cart from './components/Cart'
 import NotFound from './components/NotFound'
+import ProtectedRoute from './components/ProtectedRoute'  
 
 import './App.css'
 
