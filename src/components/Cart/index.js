@@ -1,17 +1,14 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie'
 import Header from '../Header'
 import './index.css'
 
 const Cart = () => {
-  const navigate = useNavigate()
-  useEffect(() => {
-      const jwtToken = Cookies.get('jwt_token')
-      if (jwtToken === undefined) {
-        navigate('/login', { replace: true }) // Navigate to login if token doesn't exists
-      }
-    }, [navigate])
+  // const navigate = useNavigate()
+  // useEffect(() => {
+  //     const jwtToken = Cookies.get('jwt_token')
+  //     if (jwtToken === undefined) {
+  //       navigate('/login', { replace: true }) // Navigate to login if token doesn't exists
+  //     }
+  //   }, [navigate])
   return (
   <>
     <Header />

@@ -1,16 +1,9 @@
-// import { useEffect } from 'react'
-// import { Route, useNavigate } from 'react-router-dom'
-// import Cookies from 'js-cookie'
-// import Home from '../Home'
+import Cookies from 'js-cookie'
+import { Outlet, Navigate } from 'react-router-dom';
 
-// const ProtectedRoute = props => {
-//   const navigate = useNavigate()
-//     useEffect(() => {
-//     const jwtToken = Cookies.get('jwt_token')
-//     if (jwtToken === undefined) {
-//         navigate('/login', { replace: true }) // Navigate to home if token exists
-//     }
-//     <Route {...props}/>
-//     })
-// }
-// export default ProtectedRoute
+const ProtectedRoute = () => {
+    const token = Cookies.get('jwt_token');
+    return token ? <Outlet /> : <Navigate to="/login" />;
+};
+
+export default ProtectedRoute;

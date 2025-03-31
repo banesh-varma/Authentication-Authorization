@@ -41,6 +41,7 @@ const Header = () => {
           src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
           alt="logout icon"
           className="logout-icon"
+          onClick={onLogout}
         />
       </button>
     </div>

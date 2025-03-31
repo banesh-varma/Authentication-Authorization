@@ -28,7 +28,7 @@
     flex-direction: row;
     justify-content: flex-end;
     align-self: flex-end;
-    flex: 1;
+    flex-grow: 1;
     list-style-type: none;
     margin-top: 0;
     margin-bottom: 0;
@@ -59,6 +59,7 @@
     border: none;
     border-radius: 4px;
     margin-left: 14px;
+    cursor: pointer;
   }
   
   @media screen and (max-width: 767px) {
